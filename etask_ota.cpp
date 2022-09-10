@@ -1,4 +1,4 @@
-#include <ota.h>
+#include <etask_ota.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <Update.h>
@@ -10,12 +10,16 @@ char id[CHIP_ID_LEN];
 
 void etask_ota(void * parameters) {
     for(;;) {
+        /* Can't OTA without WiFi! */
+        while (WiFi.status() != WL_CONNECTED) {
+            delay(1000);
+        }
         ota_update_check();
         delay(OTA_CHECK_INTERVAL);
     }
 }
 
-int ota_update(char * url) {
+void ota_update(char * url) {
     HTTPClient https;
     https.begin(url, AWS_ROOT_CA_1);
     int httpCode = https.GET();

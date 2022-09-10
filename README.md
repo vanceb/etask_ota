@@ -19,7 +19,7 @@ void setup() {
   xTaskCreate(
     etask_ota,
     "OTA_Task",
-    1500,
+    5000,
     NULL,
     0,
     &ota_task
