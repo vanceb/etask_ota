@@ -11,7 +11,7 @@ Include this repository as a submodule in your project, or just download as a li
 ~~~c
 #include <etask_ota.h>
 
-task_handle_t ota_task;
+TaskHandle_t ota_task;
 
 void setup() {
   ...
